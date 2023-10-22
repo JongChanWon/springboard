@@ -1,6 +1,9 @@
 package com.codingrecipe.board.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,5 +35,13 @@ public class BoardController {
     	} else {
     		return "save";
     	}
+    }
+    
+    @GetMapping("/")
+    public String findAll(Model model) { // 디비에서 뭔가를 가져와야 한다면 Model을 써야함
+    	List<BoardDTO> boardList = boardService.findAll();
+    	model.addAttribute("boardList", boardList);
+    	
+    	return "list";
     }
 }
