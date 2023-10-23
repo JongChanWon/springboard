@@ -9,7 +9,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Json
 public class BoardDTO {
 	private Long id;
 	private String boardWriter;
@@ -18,6 +17,6 @@ public class BoardDTO {
 	private String boardContents;
 	private int boardHits;
 	private Timestamp boardCreatedTime;
-	
-	
+
+
 }
