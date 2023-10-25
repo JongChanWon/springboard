@@ -26,7 +26,6 @@
 				<td>${board.boardWriter}</td>
 				<td>${board.boardCreatedTime}</td>
 				<td>${board.boardHits}</td>
-				
 			</tr>
 		</c:forEach>
 		</tbody>
