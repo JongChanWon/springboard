@@ -32,6 +32,7 @@ public class BoardController {
     @PostMapping("save")
     public String save(@ModelAttribute BoardDTO boardDTO) {
     	int saveResult = boardService.save(boardDTO);
+
     	if(saveResult > 0) {
     		return "redirect:/board/";
     	} else {
@@ -69,6 +70,7 @@ public class BoardController {
     }
 
     // jsp에서 링크를 타고 왔기 때문에 getmapping
+    // requestparam에 적어준 아이디(쿼리스트링 파라미터)를 요청을 해야하는데 파라미터 값이 없으면 400에러 뜸
     @GetMapping("/update")
     public String updateForm(@RequestParam("id") Long id, Model model) {
     	BoardDTO boardDTO = boardService.findById(id);
@@ -102,8 +104,10 @@ public class BoardController {
     // required=true면 필수
     @GetMapping("/paging")
     public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-    	log.info("page log!!!!!! = " + page);
     	System.out.println("page = " + page);
+    	// 해당 페이지에서 보여줄 글 목록
+    	List<BoardDTO> pagingList = boardService.pagingList(page);
+
     	return "index";
     }
 }
